@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  postgres:
+  image: postgres:latest
+  container_name: finance-ai-database
+  enviroment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: POSTGRES_PASSWORD
+    POSTGRESS_DB: finace-ai
+  ports:
+    - "5432:5432"
+  volumes:
+    - ./.postgres-data:/var/lib/postgresql_/data
+
+volumes:
+  .postgres-data:
