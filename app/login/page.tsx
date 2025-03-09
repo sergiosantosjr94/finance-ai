@@ -25,7 +25,7 @@ const LoginPage = async () => {
         <p className="mb-8 text-muted-foreground">
           Finance AI is a finance management plataform develop by Sérgio Santos
           Jr, that uses AI for monitoring your movimentations, and offers
-          tailored insights faciliting the control of your budget..
+          tailored insights faciliting the control of your budget.
         </p>
         <SignInButton>
           <Button variant="outline">
