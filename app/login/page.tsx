@@ -11,9 +11,9 @@ const LoginPage = async () => {
     redirect("/");
   }
   return (
-    <div className="grid grid-cols-2 h-full">
+    <div className="grid h-full grid-cols-2">
       {/* Left Position */}
-      <div className="flex h-full flex-col justify-center p-8 max-w-[550px] mx-auto">
+      <div className="mx-auto flex h-full max-w-[550px] flex-col justify-center p-8">
         <Image
           src="/logo.svg"
           width={173}
@@ -21,11 +21,11 @@ const LoginPage = async () => {
           alt="Finance AI"
           className="mb-8"
         />
-        <h1 className="text-4xl font-bold mb-3">Welcome!</h1>
-        <p className="text-muted-foreground mb-8">
+        <h1 className="mb-3 text-4xl font-bold">Welcome!</h1>
+        <p className="mb-8 text-muted-foreground">
           Finance AI is a finance management plataform develop by Sérgio Santos
           Jr, that uses AI for monitoring your movimentations, and offers
-          tailored insights faciliting the control of your budget.
+          tailored insights faciliting the control of your budget..
         </p>
         <SignInButton>
           <Button variant="outline">
