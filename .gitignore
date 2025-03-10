@@ -40,3 +40,5 @@ next-env.d.ts
 
 #docker
 .postgres-data
+# clerk configuration (can include secrets)
+/.clerk/
