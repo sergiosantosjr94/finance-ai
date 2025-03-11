@@ -14,8 +14,6 @@ interface HomeProps {
 }
 
 export default async function Home({ searchParams: { month } }: HomeProps) {
-  const currentMonth = new Date().getMonth() + 1;
-  const formattedMonth = currentMonth.toString().padStart(2, "0");
   const { userId } = await auth();
   if (!userId) {
     redirect("/login");
@@ -23,7 +21,7 @@ export default async function Home({ searchParams: { month } }: HomeProps) {
 
   const monthIsValid = !month || !isMatch(month, "MM");
   if (monthIsValid) {
-    redirect(`?month=${formattedMonth}`);
+    redirect(`?month=${new Date().getMonth() + 1}`);
   }
 
   const dashboard = await getDashboard(month);
