@@ -4,21 +4,22 @@ import { TransactionType } from "@prisma/client";
 import { TotalExpensePerCategory, TransactionPercentagePerType } from "./types";
 
 const getDashboard = async (month: string) => {
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
   const where = {
     date: {
       gte: new Date(`2025-${month}-01`),
       lt: new Date(`2025-${month}-31`),
     },
+    userId: userId,
   };
-  const { userId } = await auth();
-  if (!userId) {
-    throw new Error("User not authenticated");
-  }
 
   const depositsTotal = Number(
     (
       await db.transaction.aggregate({
-        where: { ...where, type: "DEPOSIT", userId: userId },
+        where: { ...where, type: "DEPOSIT" },
         _sum: { amount: true },
       })
     )?._sum?.amount,
@@ -27,7 +28,7 @@ const getDashboard = async (month: string) => {
   const investmentsTotal = Number(
     (
       await db.transaction.aggregate({
-        where: { ...where, type: "INVESTMENT", userId: userId },
+        where: { ...where, type: "INVESTMENT" },
         _sum: { amount: true },
       })
     )?._sum?.amount,
@@ -35,7 +36,7 @@ const getDashboard = async (month: string) => {
   const expensesTotal = Number(
     (
       await db.transaction.aggregate({
-        where: { ...where, type: "EXPENSE", userId: userId },
+        where: { ...where, type: "EXPENSE" },
         _sum: { amount: true },
       })
     )?._sum?.amount,
@@ -44,7 +45,7 @@ const getDashboard = async (month: string) => {
   const transactionsTotal = Number(
     (
       await db.transaction.aggregate({
-        where: { ...where, userId: userId },
+        where: { ...where },
         _sum: { amount: true },
       })
     )._sum.amount,
