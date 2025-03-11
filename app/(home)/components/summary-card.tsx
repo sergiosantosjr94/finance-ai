@@ -6,6 +6,7 @@ interface SummaryCardProps {
   title: string;
   amount: number;
   size?: "small" | "large";
+  bg?: boolean;
 }
 
 const SummaryCard = ({
@@ -13,30 +14,33 @@ const SummaryCard = ({
   title,
   amount,
   size = "small",
+  bg = false,
 }: SummaryCardProps) => {
   return (
-    <Card>
-      <CardHeader className="flex-row items-center gap-4">
-        {icon}
-        <p
-          className={`${size === "small" ? "text-muted-foreground" : "text-white opacity-70"}`}
-        >
-          {title}
-        </p>
-      </CardHeader>
-      <CardContent className="flex justify-between">
-        <p
-          className={`${size === "small" ? "text-2xl" : "text-4xl"} font-bold`}
-        >
-          {Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(amount || 0)}
-        </p>
+    <div className={`${bg ? "rounded-md bg-white bg-opacity-5" : ""}`}>
+      <Card>
+        <CardHeader className="flex-row items-center gap-4">
+          {icon}
+          <p
+            className={`${size === "small" ? "text-muted-foreground" : "text-white opacity-70"}`}
+          >
+            {title}
+          </p>
+        </CardHeader>
+        <CardContent className="flex justify-between">
+          <p
+            className={`${size === "small" ? "text-2xl" : "text-4xl"} font-bold`}
+          >
+            {Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(amount || 0)}
+          </p>
 
-        {size === "large" && <AddTransactionButton />}
-      </CardContent>
-    </Card>
+          {size === "large" && <AddTransactionButton />}
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
