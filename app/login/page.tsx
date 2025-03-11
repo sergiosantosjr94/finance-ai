@@ -21,16 +21,17 @@ const LoginPage = async () => {
           alt="Finance AI"
           className="mb-8"
         />
-        <h1 className="mb-3 text-4xl font-bold">Welcome!</h1>
+        <h1 className="mb-3 text-4xl font-bold">Seja bem-vindo!</h1>
         <p className="mb-8 text-muted-foreground">
-          Finance AI is a finance management plataform develop by Sérgio Santos
-          Jr, that uses AI for monitoring your movimentations, and offers
-          tailored insights faciliting the control of your budget.
+          Finance AI é uma plataforma de gereciamento financeiro desenvolvido
+          por Sérgio Santos Jr, que utiliza IA para monitorar suas movimentações
+          financeiras e oferece insights personalizados facilitando o controle
+          de seu orçamento.
         </p>
         <SignInButton>
           <Button variant="outline">
             <LogInIcon />
-            Login or Signup
+            Login ou Fazer Cadastro
           </Button>
         </SignInButton>
       </div>

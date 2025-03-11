@@ -40,6 +40,7 @@ import {
 } from "../_constants/transactions";
 import { DatePicker } from "./ui/date-picker";
 import { upsertTransaction } from "../_actions/upsert-transaction";
+import { redirect } from "next/navigation";
 
 interface UpsertTransactionDialogProps {
   isOpen: boolean;
@@ -98,6 +99,7 @@ const UpsertTransactionDialog = ({
       await upsertTransaction({ ...data, id: transactionId });
       setIsOpen(false);
       form.reset();
+      redirect("/transactions");
     } catch (error) {
       console.log(error);
     }
