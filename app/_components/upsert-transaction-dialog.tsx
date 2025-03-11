@@ -40,6 +40,7 @@ import {
 } from "../_constants/transactions";
 import { DatePicker } from "./ui/date-picker";
 import { upsertTransaction } from "../_actions/upsert-transaction";
+import { useRouter } from "next/navigation";
 
 interface UpsertTransactionDialogProps {
   isOpen: boolean;
@@ -92,13 +93,13 @@ const UpsertTransactionDialog = ({
       type: TransactionType.EXPENSE,
     },
   });
-
+  const router = useRouter();
   const onSubmit = async (data: FormSchema) => {
     try {
       await upsertTransaction({ ...data, id: transactionId });
       setIsOpen(false);
+      router.refresh();
       form.reset();
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
