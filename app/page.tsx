@@ -4,9 +4,10 @@ import Navbar from "./_components/navbar";
 import SummaryCards from "./(home)/components/summary-cards";
 import TimeSelect from "./(home)/components/time-select";
 import { isMatch } from "date-fns";
-import { TransactionPieChart } from "./(home)/components/transactions-pie-chart";
+import { TransactionsPieChart } from "./(home)/components/transactions-pie-chart";
 import getDashboard from "./_data/get-dashboard";
 import ExpensesPerCategory from "./(home)/components/expenses-per-category";
+import LastTransactions from "./(home)/components/last-transactions";
 
 interface HomeProps {
   searchParams: { month: string };
@@ -30,25 +31,26 @@ export default async function Home({ searchParams: { month } }: HomeProps) {
   return (
     <>
       <Navbar />
-      <div className="space-y-6 p-6">
+      <div className="flex h-[912px] flex-col space-y-6 overflow-hidden p-6 2xl:h-full">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <TimeSelect />
         </div>
-        <div className="grid grid-cols-[2fr,1fr]">
-          <SummaryCards {...dashboard} />
-        </div>
-        <div className="grid grid-cols-[2fr,1fr]">
-          <div className="flex space-x-4">
-            <div className="w-full">
-              <TransactionPieChart {...dashboard} />
-            </div>
-            <div className="w-full">
-              <ExpensesPerCategory
-                expensesPerCategory={dashboard.totalExpensePerCategory}
-              />
+        <div className="grid grid-cols-[2fr,1fr] gap-6 overflow-hidden">
+          <div className="flex flex-col gap-6 overflow-hidden">
+            <SummaryCards {...dashboard} />
+            <div className="flex gap-6 overflow-hidden">
+              <div className="w-full">
+                <TransactionsPieChart {...dashboard} />
+              </div>
+              <div className="w-full">
+                <ExpensesPerCategory
+                  expensesPerCategory={dashboard.totalExpensePerCategory}
+                />
+              </div>
             </div>
           </div>
+          <LastTransactions lastTransactions={dashboard.lastTransactions} />
         </div>
       </div>
     </>

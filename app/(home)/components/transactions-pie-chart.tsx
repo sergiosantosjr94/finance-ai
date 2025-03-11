@@ -37,7 +37,7 @@ interface TransactionPieChartProps {
   expensesTotal: number;
 }
 
-export function TransactionPieChart({
+export function TransactionsPieChart({
   depositsTotal,
   investmentsTotal,
   expensesTotal,
