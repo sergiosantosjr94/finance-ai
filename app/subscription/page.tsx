@@ -7,6 +7,8 @@ import { Badge } from "../_components/ui/badge";
 
 import AcquirePlanButton from "./_components/acquire-plan-button";
 
+import { getCurrentMonthTransactions } from "../_data/get-current-month-transactions";
+
 const SubscriptionPage = async () => {
   const { userId } = await auth();
   if (!userId) {
@@ -14,8 +16,9 @@ const SubscriptionPage = async () => {
   }
 
   const user = await clerkClient.users.getUser(userId);
-  const hasPremiumPlan = user.publicMetadata.subscriptionPlan === "premium";
 
+  const hasPremiumPlan = user.publicMetadata.subscriptionPlan === "premium";
+  const currentMonthTransactions = await getCurrentMonthTransactions();
   return (
     <>
       <Navbar />
@@ -37,7 +40,9 @@ const SubscriptionPage = async () => {
             <CardContent className="flex flex-col space-y-8 py-8">
               <div className="flex items-center justify-center gap-2">
                 <CheckIcon className="text-primary" />
-                <p>Apenas 10 Transações por mês (7/10)</p>
+                <p>
+                  Apenas 10 Transações por mês {currentMonthTransactions}/10
+                </p>
               </div>
               <div className="flex items-center justify-center gap-2">
                 <XIcon />
