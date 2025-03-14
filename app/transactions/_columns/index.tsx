@@ -10,7 +10,7 @@ import {
 import EditTransactionButton from "../_components/edit-transaction-button";
 import DeleteTransactionButton from "../_components/delete-transaction-button";
 
-export const TransactionColumns: ColumnDef<Transaction>[] = [
+export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "name",
     header: "Nome",
@@ -30,7 +30,7 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: "paymentMethod",
-    header: "Método de pagamento",
+    header: "Método de Pagamento",
     cell: ({ row: { original: transaction } }) =>
       TRANSACTION_PAYMENT_METHOD_LABELS[transaction.paymentMethod],
   },
@@ -55,10 +55,10 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: "actions",
-    header: "",
+    header: "Ações",
     cell: ({ row: { original: transaction } }) => {
       return (
-        <div>
+        <div className="space-x-1">
           <EditTransactionButton transaction={transaction} />
           <DeleteTransactionButton id={transaction.id} />
         </div>
