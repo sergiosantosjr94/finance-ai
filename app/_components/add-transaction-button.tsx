@@ -22,21 +22,25 @@ const AddTransactionButton = ({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
-          <Button
-            className="text-bold rounded-full"
-            onClick={() => setDialogIsOpen(true)}
-            disabled={!userCanAddTransaction}
-          >
-            <ArrowDownUpIcon />
-            Adicionar Transação
-          </Button>
-          <UpsertTransactionDialog
-            isOpen={dialogIsOpen}
-            setIsOpen={setDialogIsOpen}
-          />
+        <TooltipTrigger asChild>
+          <div className="relative">
+            <Button
+              className="text-bold rounded-full"
+              onClick={() => setDialogIsOpen(true)}
+              disabled={!userCanAddTransaction}
+            >
+              <ArrowDownUpIcon />
+              Adicionar Transação
+            </Button>
+
+            {/* Keep the dialog inside Tooltip but outside the button */}
+            <UpsertTransactionDialog
+              isOpen={dialogIsOpen}
+              setIsOpen={setDialogIsOpen}
+            />
+          </div>
         </TooltipTrigger>
-        <TooltipContent></TooltipContent>
+
         {!userCanAddTransaction && (
           <TooltipContent>
             Você já atingiu o limite de transações. Atualize seu plano para
